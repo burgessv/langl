@@ -12,7 +12,7 @@
 --    set speed to zero
 --
 -- LOOP
--- -- K2 move loop position
+-- -- K2 sets loop window
 --
 -- PITCH
 -- -- K2 sets coarse control
@@ -122,11 +122,11 @@ a.delta = function(n,d)
     end
   elseif mode == 2 then
     if hold == true then
-      loop_center_pos[n] = (loop_center_pos[n] + d/200) % 1
-      params:set(n.."loop_center_pos", loop_center_pos[n])
-    else
-      loop_data[n].percent = util.clamp(loop_data[n].percent + d/200, 0.001, 1)
+      loop_data[n].percent = util.clamp(loop_data[n].percent + d/300, 0.001, 1)
       params:set(n.."loop_percent", loop_data[n].percent)
+    else
+      loop_center_pos[n] = (loop_center_pos[n] + d/300) % 1
+      params:set(n.."loop_center_pos", loop_center_pos[n])
     end 
     set_loop_ends(n)
 
